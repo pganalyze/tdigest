@@ -17,12 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Ruby, JRuby and TruffleRuby
+      - name: Set up Ruby, JRuby and TruffleRuby
         uses: ruby/setup-ruby@v1
 
         with:
           ruby-version: ${{matrix.ruby}}
           bundler-cache: true
 
-      - name: Run a one-line script
+      - name: Run tests
         run: bundle exec rake test
