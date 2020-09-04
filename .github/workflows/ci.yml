@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [ '2.4', '2.5', '2.6', '2.7', 'debug', 'jruby' ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby, JRuby and TruffleRuby
+        uses: ruby/setup-ruby@v1
+
+        with:
+          ruby-version: ${{matrix.ruby}}
+          bundler: true
+          bundler-cache: true
+
+      - name: Run a one-line script
+        run: bundle exec rake test
