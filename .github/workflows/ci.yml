@@ -22,7 +22,6 @@ jobs:
 
         with:
           ruby-version: ${{matrix.ruby}}
-          bundler: true
           bundler-cache: true
 
       - name: Run a one-line script
